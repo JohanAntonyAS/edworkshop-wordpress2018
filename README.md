@@ -1,4 +1,4 @@
-# Repositorio del workshop Seguridad y Rendimiento en WordPress de EDteam 2018 impartido por @jonmircha
+# Repositorio del Workshop Seguridad y Rendimiento en WordPress de EDteam 2018 impartido por @jonmircha
 
 [Ir al Workshop](https://ed.team/cursos/wordpress-seguridad)
 
@@ -99,7 +99,7 @@ $ | Marca el fin de un argumento.
 ! | Es la negación (excepto). Ejemplo: “!string” resulta “no string”.
 . | El punto indica cualquier carácter arbitrario.
 – | Instrucción “not to”.
-+ | El símbolo de suma indica uno o más caracteres del caracter que le precede. Por ejemplo: (.+) indica cualquier cadena de uno o más caracteres.
+\+ | El símbolo de suma indica uno o más caracteres del caracter que le precede. Por ejemplo: (.+) indica cualquier cadena de uno o más caracteres.
 \| | Es el o lógico, condición de alternancia. Ejemplo (x|y) es el caracter x o el y.
 \\ | Escapa caracteres, es decir, toma el carácter que le sigue literalmente. Por ejemplo: “.” indica literalmente un punto, ya que sin la barra invertida indicaría cualquier carácter.
 /* | Indica cero o más “/”.
