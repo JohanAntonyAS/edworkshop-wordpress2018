@@ -1,0 +1,35 @@
+# Comentarios en htaccess
+
+# Codificación UTF-8
+AddDefaultCharset UTF-8
+AddCharset UTF-8 .html .css .js .php .txt .json .xml
+
+# Idioma
+DefaultLanguage es-MX
+
+# URLs Amigables
+
+# Se permite mostrar contenido negociando diferentes valores
+Options +MultiViews
+<IfModule mod_rewrite.c>
+  # Seguir enlaces simbólicos
+  Options +FollowSymlinks
+  # Activar la sobreescritura
+  RewriteEngine On
+  # Se sobreescibren reglas condicionales
+  # Acceder a archivos que existan
+  RewriteCond %{REQUEST_FILENAME} !-f
+  # Acceder a directorios que existan
+  RewriteCond %{REQUEST_FILENAME} !-d
+  # Regla para crear URLs Amigables
+  RewriteRule ^(.*)$ index.php?page=$1 [QSA,L]
+</IfModule>
+
+# Deshabilitar la navegación de directorios
+Options All -Indexes
+
+# Proteger el archivo de configuración
+<Files .htaccess>
+  Order Allow,Deny
+  Deny from all
+</Files>
