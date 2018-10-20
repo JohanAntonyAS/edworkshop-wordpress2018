@@ -1,21 +1,20 @@
 # BEGIN WordPress
 <IfModule mod_rewrite.c>
 RewriteEngine On
-RewriteBase /edwp-workshop/con-duplicator/
+RewriteBase /edwp-workshop/macho-alfa/
 RewriteRule ^index\.php$ - [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . /edwp-workshop/con-duplicator/index.php [L]
+RewriteRule . /edwp-workshop/macho-alfa/index.php [L]
 </IfModule>
+
 # END WordPress
 
-# ********** ********** ********** #
-
-# Comentarios htaccess
+# Comentarios en htaccess
 
 # Codificación UTF-8
 AddDefaultCharset UTF-8
-AddCharset UTF-8 .html .css .php .txt .js .json .xml
+AddCharset UTF-8 .html .css .js .php .txt .json .xml
 
 # Idioma
 DefaultLanguage es-MX
@@ -28,6 +27,12 @@ Options All -Indexes
   Order Allow,Deny
   Deny from all
 </Files>
+
+# Proteger archivos importantes y vulnerables de WP
+<FilesMatch "^(wp-config.php|wp-config-sample.php|license.txt|licencia.txt|readme.html|debug_log|error_log|access_log|php.ini|xmlrcp.php)">
+  Order Allow,Deny
+  Deny from all
+</FilesMatch>
 
 # Prevenir ataques comunes e inyección de códigos
 <IfModule mod_rewrite.c>
@@ -127,23 +132,14 @@ Options All -Indexes
   ExpiresByType application/x-shockwave-flash "access 1 month"
 </IfModule>
 
-# ********** ********** ********** #
-
-# Proteger archivos importantes y vulnerables de WP
-<FilesMatch "^(wp-config.php|wp-config-sample.php|license.txt|licencia.txt|readme.html|debug_log|error_log|access_log|php.ini|xmlrpc.php)">
-  Order Allow,Deny
-  Deny from all
-</FilesMatch>
-
-#Cambiar la página del login
-RewriteRule ^login$ http://localhost:8080/edwp-workshop/con-duplicator/wp-login.php [NC,L]
+RewriteRule ^puerta$ http://localhost:8080/edwp-workshop/macho-alfa/wp-login.php [NC,L]
 
 # Acceso a wp-login.php IPs permitidas
-<Files wp-login.php>
-  Order Deny,Allow
-  Deny from all
-  Allow from xxx.xxx.xxx.xxx
-</Files>
+#<Files wp-login.php>
+#  Order Deny,Allow
+#  Deny from all
+#  Allow from xxx.xxx.xxx.xxx
+#</Files>
 
 # Evitar Hotlinking de imágenes
 RewriteEngine On
@@ -215,28 +211,18 @@ SetEnvIfNoCase User-Agent "^Ingresa aquí otro User-Agent a bloquear" bad_bot
 </Limit>
 
 # Registrar errores en carpeta log
-#php_flag log_errors on
-#php_value error_log /logs/php_error.log
+php_flag log_errors on
+php_value error_log /logs/php_error.log
 
 # Evitar que los errores PHP se muestren al usuario
-#php_flag display_startup_errors off
-#php_flag display_errors off
-#php_flag html_errors off
+php_flag display_startup_errors off
+php_flag display_errors off
+php_flag html_errors off
 
 # Páginas de error personalizadas
-#ErrorDocument 401 /error/401.php
-#ErrorDocument 404 /error/404.php
-#ErrorDocument 500 /error/500.php
-
-# Redirigir peticiones www (www.tusitio.com) a la dirección sin www (tusitio.com)
-#RewriteEngine on
-#RewriteCond %{HTTP_HOST} ^www.tudominio.com [NC]
-#RewriteRule ^(.*)$ http://tudominio.com/$1 [L,R=301]
-
-# Redirigir peticiones sin www (tusitio.com) a la dirección con www (www.tusitio.com)
-#RewriteEngine on
-#RewriteCond %{HTTP_HOST} ^tudominio.com [NC]
-#RewriteRule ^(.*)$ http://www.tudominio.com/$1 [L,R=301,NC]
+ErrorDocument 401 /error/401.php
+ErrorDocument 404 /error/404.php
+ErrorDocument 500 /error/500.php
 
 # Redirigir a un nuevo dominio
 #<IfModule mod_rewrite.c>
@@ -251,6 +237,16 @@ SetEnvIfNoCase User-Agent "^Ingresa aquí otro User-Agent a bloquear" bad_bot
 #RewriteCond %{REQUEST_URI} !/prueba-mantenimineto.html$
 #RewriteCond %{REMOTE_ADDR} !^123.123.123.123
 #RewriteRule $ /maintenance.html [R=302,L]
+
+# Redirigir peticiones www (www.tusitio.com) a la dirección sin www (tusitio.com)
+#RewriteEngine on
+#RewriteCond %{HTTP_HOST} ^www.tudominio.com [NC]
+#RewriteRule ^(.*)$ http://tudominio.com/$1 [L,R=301]
+
+# Redirigir peticiones sin www (tusitio.com) a la dirección con www (www.tusitio.com)
+#RewriteEngine on
+#RewriteCond %{HTTP_HOST} ^tudominio.com [NC]
+#RewriteRule ^(.*)$ http://www.tudominio.com/$1 [L,R=301,NC]
 
 # Redireccionar de HTTP a HTTPS
 #RewriteEngine on

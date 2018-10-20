@@ -2,10 +2,8 @@
 // Ocultar la versión de WP de las metatags
 remove_action( 'wp_head', 'wp_generator' );
 
-
 // Bloquear mensajes de errores en la entrada al administrador
 add_filter( 'login_errors', create_function('$a', 'return null;') );
-
 
 // Bloquear visitantes que usen Servidores Proxies
 function block_proxy_visits () {
@@ -17,7 +15,6 @@ function block_proxy_visits () {
 }
 
 add_action('after_setup_theme', 'block_proxy_visits');
-
 
 // Evitar la enumeración de usuarios
 // http://example.com/?author=1
@@ -34,7 +31,5 @@ if ( !is_admin() ) {
 // Crear nueva regla rewrite
 add_action( 'init', 'wp_ozh_plu_rewrite' );
 function wp_ozh_plu_rewrite() {
-    add_rewrite_rule( 'login/?$', 'wp-login.php', 'top' );
+    add_rewrite_rule( 'puerta/?$', 'wp-login.php', 'top' );
 }
-
-
